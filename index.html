@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Guía interactiva para aprender conversiones y operaciones binarias con ejercicios autocorregibles.">
+  <meta name="theme-color" content="#101a2d">
+  <title>Binario Lab · Aprende y practica</title>
+  <link rel="stylesheet" href="binario.css">
+  <script src="binario.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#inicio" aria-label="Binario Lab, inicio"><span class="brand-mark">01</span><span>BINARIO <b>LAB</b></span></a>
+    <nav aria-label="Navegación principal">
+      <a href="#guia">Guía</a><a href="#practica">Práctica</a>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false" aria-label="Activar modo oscuro"><span class="theme-icon" aria-hidden="true">☾</span><span class="theme-label">Modo oscuro</span></button>
+    </nav>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="pulse"></span> SISTEMAS INFORMÁTICOS · UD1</p>
+        <h1>Piensa en <span>binario.</span><br>Domínalo paso a paso.</h1>
+        <p class="hero-text">Convierte números, opera con bits y comprueba lo que sabes con ejercicios nuevos cada vez.</p>
+        <a class="button button-primary" href="#practica">Empezar a practicar <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="hero-art" aria-label="Representación decorativa de bits">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="bit-card bit-card-back">1010<br>0101</div>
+        <div class="bit-card bit-card-main"><span class="bit-label">BIT · 01</span><strong>1<span class="cursor">_</span></strong><small>dos estados.<br>infinitas posibilidades.</small></div>
+        <span class="float-bit float-a">0</span><span class="float-bit float-b">1</span>
+      </div>
+    </section>
+
+    <div class="quick-stats" aria-label="Contenido de la guía">
+      <div><strong>2ⁿ</strong><span>valor posicional</span></div><div><strong>6</strong><span>operaciones lógicas</span></div><div><strong>∞</strong><span>prácticas aleatorias</span></div>
+    </div>
+
+    <section class="section" id="guia">
+      <div class="section-heading"><div><p class="eyebrow">01 — CONCEPTOS CLAVE</p><h2>Una guía para cada operación</h2></div><p>Elige un tema, repasa la regla y mira cómo se aplica.</p></div>
+      <div class="topic-grid">
+        <article class="topic-card">
+          <div class="topic-icon violet">↔</div><h3>Conversión de bases</h3>
+          <p class="muted">El valor de cada bit depende de su posición. La coma separa posiciones positivas y negativas.</p>
+          <div class="formula">… 2³ &nbsp; 2² &nbsp; 2¹ &nbsp; 2⁰ <span class="formula-divider">·</span> 2⁻¹ &nbsp; 2⁻² …</div>
+          <div class="mini-example"><b>Binario → decimal</b><br><code>1011,01₂ = 8 + 2 + 1 + ¼ = 11,25₁₀</code></div>
+          <details class="bit-help"><summary>Ver el valor que aporta cada bit</summary>
+            <p>Multiplica cada bit por el peso que tiene debajo y suma los resultados.</p>
+            <div class="bit-chart-wrap"><table class="bit-chart" aria-label="Posición y peso de los bits del ejemplo 1011,01"><tbody>
+              <tr><th>Bit</th><td>1</td><td>0</td><td>1</td><td>1</td><th>,</th><td>0</td><td>1</td></tr>
+              <tr><th>Posición</th><td>2³</td><td>2²</td><td>2¹</td><td>2⁰</td><th>,</th><td>2⁻¹</td><td>2⁻²</td></tr>
+              <tr><th>Peso</th><td>8</td><td>4</td><td>2</td><td>1</td><th>,</th><td>½</td><td>¼</td></tr>
+            </tbody></table></div>
+            <p class="chart-note">Para pasar de binario a octal, agrupa de 3 en 3 bits. Para hexadecimal, agrupa de 4 en 4, desde la coma hacia los lados.</p>
+            <div class="group-cheats"><span><b>Octal</b> · 000–111 → 0–7</span><span><b>Hexadecimal</b> · 0000–1111 → 0–F</span></div>
+          </details>
+          <details><summary>¿Cómo se convierte?</summary><p><b>Binario a decimal:</b> multiplica cada bit por su potencia de 2 y suma. A la derecha de la coma se usan potencias negativas: 2⁻¹ = 0,5; 2⁻² = 0,25…</p><p><b>Decimal a binario:</b> para la parte entera, divide sucesivamente entre 2 y lee los restos de abajo arriba. Para la parte fraccionaria, multiplica por 2 y anota cada parte entera, de izquierda a derecha. Las fracciones periódicas se aproximan; usa hasta 8 bits fraccionarios.</p></details>
+        </article>
+
+        <article class="topic-card">
+          <div class="topic-icon cyan">＋</div><h3>Suma y resta</h3>
+          <p class="muted">Suma en base 2: cuando una columna llega a 2, escribe 0 y acarrea 1.</p>
+          <div class="formula">0+0=0 &nbsp; 0+1=1 &nbsp; 1+1=10</div>
+          <div class="mini-example"><b>Ejemplo de suma</b><br><code>  1011<br>+ 0110<br>──────<br> 10001</code></div>
+          <details class="rules-help"><summary>Chuleta rápida: reglas de suma y resta</summary>
+            <div class="rules-columns">
+              <div><b class="rules-title">SUMA</b><div class="rule-row"><code>0 + 0 = 0</code><span>sin acarreo</span></div><div class="rule-row"><code>0 + 1 = 1</code><span>sin acarreo</span></div><div class="rule-row"><code>1 + 0 = 1</code><span>sin acarreo</span></div><div class="rule-row"><code>1 + 1 = 10</code><span>escribe 0, lleva 1</span></div><div class="rule-row"><code>1 + 1 + 1 = 11</code><span>escribe 1, lleva 1</span></div></div>
+              <div><b class="rules-title">RESTA</b><div class="rule-row"><code>0 − 0 = 0</code><span>sin préstamo</span></div><div class="rule-row"><code>1 − 0 = 1</code><span>sin préstamo</span></div><div class="rule-row"><code>1 − 1 = 0</code><span>sin préstamo</span></div><div class="rule-row"><code>0 − 1 = 1</code><span>pide 1 prestado</span></div></div>
+            </div>
+            <p>Al pedir prestado en binario, el 0 de esa columna pasa a valer 10₂ (dos en decimal); por eso 10₂ − 1₂ = 1₂.</p>
+          </details>
+          <details><summary>¿Cómo se resta con complementos?</summary><p>Para <b>A − B con complemento a 1</b>, invierte los bits de B, suma a A y, si hay acarreo final, añádelo al bit menos significativo (acarreo recurrente).</p><p>Con <b>complemento a 2</b>, invierte B y suma 1. Añádelo a A y descarta el acarreo final. Mantén el mismo número de bits en A y B.</p></details>
+        </article>
+
+        <article class="topic-card">
+          <div class="topic-icon amber">⊙</div><h3>Complementos</h3>
+          <p class="muted">Los complementos convierten la resta en una suma. Trabaja siempre con una anchura fija.</p>
+          <div class="formula">C1(B) = invertir B<br>C2(B) = invertir B + 1</div>
+          <div class="mini-example"><b>Con 4 bits</b><br><code>B = 0110 → C1 = 1001 → C2 = 1010</code></div>
+          <details><summary>¿Cómo interpretar el resultado?</summary><p>Si A ≥ B, ambos métodos dan el resultado positivo. Si A &lt; B, el patrón queda en complemento: para recuperar el valor negativo en C1, invierte el resultado; en C2, invierte y suma 1. En C1 vuelve a sumarse el acarreo final; en C2 se descarta.</p></details>
+        </article>
+
+        <article class="topic-card">
+          <div class="topic-icon pink">∧</div><h3>Puertas lógicas</h3>
+          <p class="muted">Aplica la operación bit a bit entre dos secuencias de igual longitud.</p>
+          <div class="truth-table-wrap"><table class="truth-table"><thead><tr><th>A</th><th>B</th><th>AND</th><th>OR</th><th>NAND</th><th>NOR</th><th>XOR</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td></tr><tr><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td></tr><tr><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td></tr><tr><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td></tr></tbody></table></div>
+          <div class="logic-notes"><span><b>AND</b> todos 1</span><span><b>OR</b> alguno 1</span><span><b>XOR</b> distintos</span><span><b>NAND/NOR</b> salida negada</span><span><b>NOT</b> invierte cada bit</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="practice-section" id="practica">
+      <div class="section-heading"><div><p class="eyebrow">02 — TU TURNO</p><h2>Laboratorio de práctica</h2></div><p>Genera un reto, resuélvelo y comprueba tu respuesta.</p></div>
+      <div class="practice-layout">
+        <aside class="practice-controls">
+          <div class="control-top"><span class="live-dot"></span><span>GENERADOR DE EJERCICIOS</span></div>
+          <label for="categoryTrigger">Tipo de ejercicio</label>
+          <div class="picker" data-picker>
+            <button class="picker-trigger" id="categoryTrigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="categoryMenu"><span class="picker-current">Mezcla aleatoria · todos los tipos</span><span class="picker-arrow" aria-hidden="true">⌄</span></button>
+            <div class="picker-menu" id="categoryMenu" role="listbox" aria-labelledby="categoryTrigger" hidden>
+              <button class="picker-option" type="button" role="option" aria-selected="true" data-value="mixed">Mezcla aleatoria · todos los tipos</button>
+              <button class="picker-option" type="button" role="option" aria-selected="false" data-value="conversion">Conversiones · bases 2, 8, 10 y 16</button>
+              <button class="picker-option" type="button" role="option" aria-selected="false" data-value="fraction">Binario ↔ decimal · fracciones</button>
+              <button class="picker-option" type="button" role="option" aria-selected="false" data-value="addition">Suma binaria</button>
+              <button class="picker-option" type="button" role="option" aria-selected="false" data-value="subtraction">Resta</button>
+              <button class="picker-option" type="button" role="option" aria-selected="false" data-value="logic">Puertas lógicas</button>
+              <button class="picker-option" type="button" role="option" aria-selected="false" data-value="parity">Paridades</button>
+            </div>
+            <select id="category" class="picker-native" tabindex="-1" aria-hidden="true">
+              <option value="mixed" selected>Mezcla aleatoria · todos los tipos</option>
+              <option value="conversion">Conversiones · bases 2, 8, 10 y 16</option>
+              <option value="fraction">Binario ↔ decimal · fracciones</option>
+              <option value="addition">Suma binaria</option>
+              <option value="subtraction">Resta</option>
+              <option value="logic">Puertas lógicas</option>
+              <option value="parity">Paridades</option>
+            </select>
+          </div>
+          <div class="method-select-group" id="logicOperationControl" hidden>
+            <label for="logicOperationTrigger">Operación lógica</label>
+            <div class="picker" data-picker>
+              <button class="picker-trigger" id="logicOperationTrigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="logicOperationMenu"><span class="picker-current">AND</span><span class="picker-arrow" aria-hidden="true">⌄</span></button>
+              <div class="picker-menu" id="logicOperationMenu" role="listbox" aria-labelledby="logicOperationTrigger" hidden>
+                <button class="picker-option" type="button" role="option" aria-selected="true" data-value="AND">AND</button>
+                <button class="picker-option" type="button" role="option" aria-selected="false" data-value="OR">OR</button>
+                <button class="picker-option" type="button" role="option" aria-selected="false" data-value="NAND">NAND</button>
+                <button class="picker-option" type="button" role="option" aria-selected="false" data-value="NOR">NOR</button>
+                <button class="picker-option" type="button" role="option" aria-selected="false" data-value="XOR">XOR</button>
+                <button class="picker-option" type="button" role="option" aria-selected="false" data-value="NOT">NOT</button>
+              </div>
+              <select id="logicOperation" class="picker-native" tabindex="-1" aria-hidden="true">
+                <option value="AND" selected>AND</option><option value="OR">OR</option><option value="NAND">NAND</option><option value="NOR">NOR</option><option value="XOR">XOR</option><option value="NOT">NOT</option>
+              </select>
+            </div>
+          </div>
+          <div class="method-select-group" id="subtractionMethodControl" hidden>
+            <label for="subtractionMethodTrigger">Método de resta</label>
+            <div class="picker" data-picker>
+              <button class="picker-trigger" id="subtractionMethodTrigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="subtractionMethodMenu"><span class="picker-current">Resta normal</span><span class="picker-arrow" aria-hidden="true">⌄</span></button>
+              <div class="picker-menu" id="subtractionMethodMenu" role="listbox" aria-labelledby="subtractionMethodTrigger" hidden>
+                <button class="picker-option" type="button" role="option" aria-selected="true" data-value="normal">Resta normal</button>
+                <button class="picker-option" type="button" role="option" aria-selected="false" data-value="C1">Complemento a 1</button>
+                <button class="picker-option" type="button" role="option" aria-selected="false" data-value="C2">Complemento a 2</button>
+              </div>
+              <select id="subtractionMethod" class="picker-native" tabindex="-1" aria-hidden="true">
+                <option value="normal" selected>Resta normal</option><option value="C1">Complemento a 1</option><option value="C2">Complemento a 2</option>
+              </select>
+            </div>
+          </div>
+          <label for="bitLengthTrigger">Longitud de bits</label>
+          <div class="picker" data-picker>
+            <button class="picker-trigger" id="bitLengthTrigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="bitLengthMenu"><span class="picker-current">8 bits</span><span class="picker-arrow" aria-hidden="true">⌄</span></button>
+            <div class="picker-menu" id="bitLengthMenu" role="listbox" aria-labelledby="bitLengthTrigger" hidden>
+              <button class="picker-option" type="button" role="option" aria-selected="false" data-value="4">4 bits</button>
+              <button class="picker-option" type="button" role="option" aria-selected="false" data-value="6">6 bits</button>
+              <button class="picker-option" type="button" role="option" aria-selected="true" data-value="8">8 bits</button>
+            </div>
+            <select id="bitLength" class="picker-native" tabindex="-1" aria-hidden="true">
+              <option value="4">4 bits</option><option value="6">6 bits</option><option value="8" selected>8 bits</option>
+            </select>
+          </div>
+          <button class="button button-primary generate-button" id="generateBtn" type="button"><span aria-hidden="true">⟳</span> Generar ejercicio</button>
+          <p class="control-hint">Cada reto tiene una respuesta única. Para fracciones periódicas, se admite una aproximación de hasta 8 bits.</p>
+        </aside>
+
+        <section class="exercise-card" aria-live="polite" aria-labelledby="exerciseTitle">
+          <div class="exercise-meta"><span id="exerciseType">LISTO PARA EMPEZAR</span><span id="exerciseCounter">RETO 0</span></div>
+          <h3 id="exerciseTitle">Tu siguiente reto te espera</h3>
+          <div class="problem-box" id="problemBox"><span class="problem-placeholder">Pulsa «Generar ejercicio» para comenzar</span></div>
+          <div class="bit-position-panel" id="bitPositionPanel" hidden aria-label="Panel de bits y potencias de dos"></div>
+          <details class="exercise-cheat" id="exerciseCheat" hidden><summary id="exerciseCheatTitle">Chuleta para este ejercicio</summary><div class="exercise-cheat-content" id="exerciseCheatContent"></div></details>
+          <div class="answer-row"><label class="sr-only" for="answerInput">Tu respuesta</label><input id="answerInput" type="text" inputmode="decimal" autocomplete="off" placeholder="Escribe aquí tu respuesta" disabled><button id="checkBtn" class="button button-dark" type="button" disabled>Comprobar</button></div>
+          <div class="feedback" id="feedback" role="status" aria-live="polite"></div>
+          <div class="solution" id="solution" hidden></div>
+          <div class="exercise-footer"><span>TIP</span><p id="exerciseTip">Los ceros iniciales pueden ser importantes en ejercicios de ancho fijo.</p></div>
+        </section>
+
+        <aside class="simple-calculator" aria-labelledby="simpleCalculatorTitle">
+          <div class="calculator-heading"><span>AYUDA RÁPIDA</span><h3 id="simpleCalculatorTitle">Calculadora</h3><p>Operaciones básicas para tus cuentas.</p></div>
+          <output class="calculator-display" id="calculatorDisplay" aria-live="polite">0</output>
+          <div class="calculator-keypad" aria-label="Teclado de la calculadora">
+            <button type="button" data-calc-action="clear" class="calc-key calc-key-muted" aria-label="Borrar todo">AC</button>
+            <button type="button" data-calc-action="backspace" class="calc-key calc-key-muted" aria-label="Borrar último dígito">⌫</button>
+            <button type="button" data-calc-operator="%" class="calc-key calc-key-muted" aria-label="Porcentaje">%</button>
+            <button type="button" data-calc-operator="/" class="calc-key calc-key-operator" aria-label="Dividir">÷</button>
+            <button type="button" data-calc-digit="7" class="calc-key">7</button>
+            <button type="button" data-calc-digit="8" class="calc-key">8</button>
+            <button type="button" data-calc-digit="9" class="calc-key">9</button>
+            <button type="button" data-calc-operator="*" class="calc-key calc-key-operator" aria-label="Multiplicar">×</button>
+            <button type="button" data-calc-digit="4" class="calc-key">4</button>
+            <button type="button" data-calc-digit="5" class="calc-key">5</button>
+            <button type="button" data-calc-digit="6" class="calc-key">6</button>
+            <button type="button" data-calc-operator="-" class="calc-key calc-key-operator" aria-label="Restar">−</button>
+            <button type="button" data-calc-digit="1" class="calc-key">1</button>
+            <button type="button" data-calc-digit="2" class="calc-key">2</button>
+            <button type="button" data-calc-digit="3" class="calc-key">3</button>
+            <button type="button" data-calc-operator="+" class="calc-key calc-key-operator" aria-label="Sumar">+</button>
+            <button type="button" data-calc-action="sign" class="calc-key calc-key-muted" aria-label="Cambiar signo">±</button>
+            <button type="button" data-calc-digit="0" class="calc-key">0</button>
+            <button type="button" data-calc-action="decimal" class="calc-key">,</button>
+            <button type="button" data-calc-action="equals" class="calc-key calc-key-equals" aria-label="Igual">=</button>
+          </div>
+          <p class="calculator-status" id="calculatorStatus" role="status" aria-live="polite">Lista para calcular.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="end-note"><span class="end-icon">✳</span><p><b>Un bit cada vez.</b> Entender el valor posicional hace que todas las operaciones encajen.</p><a href="#inicio">Volver arriba ↑</a></section>
+  </main>
+  <footer><span>BINARIO LAB</span><span>Aprende · Practica · Repite</span><span>CFGS · Sistemas Informáticos</span></footer>
+</body>
+</html>
+
+
+
+
+
+
+
